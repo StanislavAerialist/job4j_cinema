@@ -2,6 +2,7 @@ package ru.job4j.cinema.repository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.model.User;
@@ -9,6 +10,7 @@ import ru.job4j.cinema.model.User;
 import java.util.Collection;
 import java.util.Optional;
 
+@Repository
 public class Sql2oUserRepository implements UserRepository {
     private static final Logger LOG = LoggerFactory.getLogger(Sql2oUserRepository.class.getName());
 
