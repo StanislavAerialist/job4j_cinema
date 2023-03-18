@@ -12,7 +12,7 @@ import ru.job4j.cinema.service.TicketService;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/templates/tickets")
+@RequestMapping("tickets")
 public class TicketController {
     private final TicketService ticketService;
     private final FilmSessionService filmSessionService;
@@ -29,13 +29,13 @@ public class TicketController {
         Optional<FilmSessionDto> filmSessionDtoOptional = filmSessionService.findById(id);
         if (filmSessionDtoOptional.isEmpty()) {
             model.addAttribute("message", "Попробуйте выбрать другой сеанс");
-            return "templates/errors/404";
+            return "errors/404";
         }
         String hallTitle = filmSessionDtoOptional.get().getHallsName();
         model.addAttribute("filmSession", filmSessionDtoOptional.get());
         model.addAttribute("rowNumbers", hallService.getRowsByName(hallTitle));
         model.addAttribute("placeNumbers", hallService.getPlacesByName(hallTitle));
-        return "templates/tickets/buy";
+        return "tickets/buy";
     }
 
     @PostMapping("/buy")
@@ -47,12 +47,12 @@ public class TicketController {
                             Не удалось приобрести билет на выбранное место.\s
                             Возможно оно уже занято.\s
                             Попробуйте выбрать другое место.""");
-            return "templates/errors/404";
+            return "errors/404";
         }
         String messageSuccess = String.format("Вы забронировали билет на %s ряд %s место",
                 ticketOptional.get().getRowNumber(),
                 ticketOptional.get().getPlaceNumber());
         model.addAttribute("message", messageSuccess);
-        return "templates/tickets/success";
+        return "tickets/success";
     }
 }

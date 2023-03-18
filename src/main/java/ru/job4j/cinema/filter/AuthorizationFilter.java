@@ -23,7 +23,7 @@ public class AuthorizationFilter extends HttpFilter {
         }
         var userLoggedIn = request.getSession().getAttribute("user") != null;
         if (!userLoggedIn) {
-            var loginPageUrl = request.getContextPath() + "/templates/users/login";
+            var loginPageUrl = request.getContextPath() + "/users/login";
             response.sendRedirect(loginPageUrl);
             return;
         }
@@ -31,7 +31,8 @@ public class AuthorizationFilter extends HttpFilter {
     }
 
     private boolean isAlwaysPermitted(String uri) {
-        return uri.startsWith("/templates/users/register") || uri.startsWith("/templates/users/login")
-                || uri.startsWith("/templates/films") || uri.startsWith("/templates/filmSessions");
+        return uri.startsWith("/users/register") || uri.startsWith("/users/login")
+                || uri.startsWith("/films") || uri.startsWith("/filmSessions")
+                || uri.startsWith("/") || uri.startsWith("/files");
     }
 }

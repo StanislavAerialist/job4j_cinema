@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/templates/users")
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 
@@ -23,7 +23,7 @@ public class UserController {
 
     @GetMapping("/register")
     public String getRegistrationPage() {
-        return "templates/users/register";
+        return "users/register";
     }
 
     @PostMapping("/register")
@@ -31,14 +31,14 @@ public class UserController {
         var savedUser = userService.save(user);
         if (savedUser.isEmpty()) {
             model.addAttribute("message", "Пользователь с такой почтой уже существует");
-            return "templates/errors/404";
+            return "errors/404";
         }
         return "redirect:/index";
     }
 
     @GetMapping("/login")
     public String getLoginPage() {
-        return "templates/users/login";
+        return "users/login";
     }
 
     @PostMapping("/login")
@@ -46,7 +46,7 @@ public class UserController {
         var userOptional = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (userOptional.isEmpty()) {
             model.addAttribute("error", "Почта или пароль введены неверно");
-            return "templates/users/login";
+            return "users/login";
         }
         var session = request.getSession();
         session.setAttribute("user", userOptional.get());

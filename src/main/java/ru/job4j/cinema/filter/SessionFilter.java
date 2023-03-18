@@ -32,4 +32,3 @@ public class SessionFilter extends HttpFilter {
         request.setAttribute("user", user);
     }
 }
-

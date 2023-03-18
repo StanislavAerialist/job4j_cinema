@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.cinema.service.FilmService;
 
 @Controller
-@RequestMapping("/templates/films")
+@RequestMapping("/films")
 public class FilmController {
     private final FilmService filmService;
 
@@ -17,7 +17,7 @@ public class FilmController {
 
     @GetMapping
     public String getAll(Model model) {
-        model.addAttribute("templates/films", filmService.findAll());
-        return "templates/films/list";
+        model.addAttribute("films", filmService.findAll());
+        return "films/list";
     }
 }
