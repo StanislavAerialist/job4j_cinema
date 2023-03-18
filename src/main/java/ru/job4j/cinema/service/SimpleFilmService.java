@@ -3,6 +3,7 @@ package ru.job4j.cinema.service;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.FilmDto;
 import ru.job4j.cinema.model.Film;
+import ru.job4j.cinema.model.Genre;
 import ru.job4j.cinema.repository.FilmRepository;
 
 import java.util.Collection;
@@ -34,6 +35,11 @@ public class SimpleFilmService implements FilmService {
     }
 
     private String genreNameById(Film film) {
-        return genreService.findById(film.getId()).get().getName();
+        String rsl = null;
+        Optional<Genre> genreOptional = genreService.findById(film.getGenreId());
+        if (genreOptional.isPresent()) {
+            rsl = genreOptional.get().getName();
+        }
+        return rsl;
     }
 }

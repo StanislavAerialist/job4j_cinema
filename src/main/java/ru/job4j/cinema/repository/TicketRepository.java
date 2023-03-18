@@ -6,11 +6,5 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface TicketRepository {
-
-    Optional<Ticket> findById(int id);
-
-    Optional<Ticket> findByRowAndPlace(int row, int place);
-
-    Collection<Ticket> findAll();
-
+    Optional<Ticket> save(Ticket ticket);
 }

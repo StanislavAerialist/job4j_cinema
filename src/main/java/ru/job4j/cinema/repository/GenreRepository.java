@@ -9,7 +9,5 @@ public interface GenreRepository {
 
     Optional<Genre> findById(int id);
 
-    Optional<Genre> findByName(String name);
-
     Collection<Genre> findAll();
 }
